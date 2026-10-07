@@ -1,147 +1,583 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JOY 공유대학 뉴스레터</title>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JOY NEWSLETTER Vol.01</title>
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f5f5;
-      color: #222;
+    :root{
+      --navy:#0b4b67;
+      --orange:#f2a31b;
+      --ink:#111111;
+      --muted:#666666;
+      --line:#cfd5d9;
+      --paper:#ffffff;
+      --soft:#eef3f5;
+      --max:1180px;
     }
 
-    .wrap {
-      max-width: 900px;
-      margin: 0 auto;
-      background: white;
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:var(--paper);
+      color:var(--ink);
+      font-family:"Pretendard","Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+      font-weight:400;
+      letter-spacing:-0.01em;
+      line-height:1.7;
     }
 
-    .header {
-      padding: 50px 30px;
-      text-align: center;
-      background: #1f4f8c;
-      color: white;
+    a{color:inherit;text-decoration:none}
+    img{display:block;width:100%;height:auto}
+
+    .wrap{
+      width:min(calc(100% - 40px), var(--max));
+      margin:0 auto;
     }
 
-    .header h1 {
-      margin: 0;
-      font-size: 40px;
+    /* top nav */
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:10;
+      background:rgba(255,255,255,.94);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid rgba(11,75,103,.18);
+    }
+    .topbar-inner{
+      min-height:72px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:28px;
+    }
+    .brand{
+      font-weight:800;
+      font-size:14px;
+      letter-spacing:.22em;
+      color:var(--navy);
+      white-space:nowrap;
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:28px;
+      flex:1;
+      font-size:11px;
+      font-weight:600;
+      letter-spacing:.16em;
+    }
+    .volume{
+      font-size:11px;
+      font-weight:600;
+      letter-spacing:.14em;
+      white-space:nowrap;
     }
 
-    .header p {
-      margin-top: 10px;
-      font-size: 18px;
+    /* hero */
+    .hero{
+      padding:74px 0 54px;
+    }
+    .hero-head{
+      display:grid;
+      grid-template-columns:1fr auto;
+      align-items:end;
+      gap:30px;
+      margin-bottom:34px;
+    }
+    .hero h1{
+      margin:0;
+      max-width:920px;
+      color:var(--navy);
+      font-family:"Pretendard","Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+      font-size:clamp(52px,7vw,104px);
+      line-height:.9;
+      letter-spacing:-.045em;
+      font-weight:900;
+    }
+    .hero-sub{
+      margin:24px 0 0;
+      color:#555;
+      font-size:17px;
+      font-weight:400;
+    }
+    .scroll-mark{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-size:10px;
+      font-weight:800;
+      letter-spacing:.22em;
+      margin-bottom:6px;
+      white-space:nowrap;
+    }
+    .scroll-mark::before{
+      content:"";
+      width:46px;
+      height:2px;
+      background:var(--orange);
     }
 
-    .section {
-      padding: 40px 30px;
+    .hero-image{
+      min-height:500px;
+      background:
+        linear-gradient(135deg,rgba(11,75,103,.06) 25%,transparent 25%) 0 0/28px 28px,
+        linear-gradient(315deg,rgba(11,75,103,.06) 25%,transparent 25%) 0 0/28px 28px,
+        #f4f8f9;
+      display:grid;
+      place-items:center;
+      color:#555;
+      border:1px solid #edf1f2;
+      overflow:hidden;
+    }
+    .hero-image img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
     }
 
-    .section h2 {
-      border-bottom: 3px solid #1f4f8c;
-      padding-bottom: 10px;
+    /* section common */
+    section{
+      padding:48px 0 78px;
+    }
+    .section-label{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      margin-bottom:40px;
+      color:var(--navy);
+      font-size:11px;
+      font-weight:700;
+      letter-spacing:.20em;
+    }
+    .section-label::after{
+      content:"";
+      flex:1;
+      height:1px;
+      background:#98a6ad;
     }
 
-    .card {
-      background: #f7f7f7;
-      padding: 20px;
-      margin-bottom: 20px;
-      border-radius: 12px;
+    /* main story */
+    .main-grid{
+      display:grid;
+      grid-template-columns:1fr 1.15fr;
+      gap:70px;
+      align-items:center;
+    }
+    .story-copy h2{
+      margin:0 0 24px;
+      font-size:clamp(34px,4.4vw,62px);
+      line-height:1.16;
+      letter-spacing:-.04em;
+      font-weight:800;
+    }
+    .story-copy p{
+      max-width:470px;
+      color:#555;
+      font-size:16px;
+      font-weight:400;
+      margin:0 0 28px;
+    }
+    .more-link{
+      display:inline-flex;
+      align-items:center;
+      gap:12px;
+      color:var(--navy);
+      font-weight:600;
+      font-size:14px;
+      padding-bottom:6px;
+      border-bottom:1px solid var(--navy);
+    }
+    .more-link span{font-size:20px}
+
+    .story-image,
+    .update-image,
+    .focus-large,
+    .focus-small{
+      background:
+        linear-gradient(135deg,rgba(11,75,103,.06) 25%,transparent 25%) 0 0/24px 24px,
+        linear-gradient(315deg,rgba(11,75,103,.06) 25%,transparent 25%) 0 0/24px 24px,
+        #f4f8f9;
+      display:grid;
+      place-items:center;
+      color:#666;
+      overflow:hidden;
+    }
+    .story-image{min-height:390px}
+    .story-image img,
+    .update-image img,
+    .focus-large img,
+    .focus-small img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
     }
 
-    .card h3 {
-      margin-top: 0;
+    /* updates */
+    .updates{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:36px;
+    }
+    .update-image{aspect-ratio:16/9;margin-bottom:18px}
+    .update-num{
+      color:var(--orange);
+      font-size:25px;
+      font-weight:800;
+      line-height:1;
+      margin-bottom:10px;
+    }
+    .update-card h3{
+      margin:0 0 8px;
+      font-size:20px;
+      line-height:1.45;
+      letter-spacing:-.025em;
+      font-weight:800;
+    }
+    .update-card p{
+      margin:0;
+      color:#666;
+      font-size:14px;
+      font-weight:400;
     }
 
-    .button {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 10px 18px;
-      background: #1f4f8c;
-      color: white;
-      text-decoration: none;
-      border-radius: 6px;
+    /* focus */
+    .focus-head{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:40px;
+      align-items:end;
+      margin-bottom:24px;
+    }
+    .focus-head h2{
+      margin:0;
+      color:var(--navy);
+      font-family:"Pretendard","Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+      font-size:clamp(48px,6vw,82px);
+      line-height:.95;
+      letter-spacing:-.035em;
+    }
+    .focus-head p{
+      justify-self:end;
+      max-width:360px;
+      margin:0 0 6px;
+      font-size:14px;
+      color:#444;
+      font-weight:400;
+    }
+    .focus-grid{
+      display:grid;
+      grid-template-columns:2fr 1fr;
+      gap:12px;
+    }
+    .focus-large{min-height:520px}
+    .focus-side{
+      display:grid;
+      grid-template-rows:1fr 1fr;
+      gap:12px;
+    }
+    .focus-small{min-height:250px}
+
+    /* next */
+    .next-section{
+      background:var(--navy);
+      color:white;
+      padding:58px 0 64px;
+    }
+    .next-section .section-label{
+      color:var(--orange);
+      margin-bottom:28px;
+    }
+    .next-section .section-label::after{
+      background:rgba(255,255,255,.24);
+    }
+    .next-item{
+      display:grid;
+      grid-template-columns:180px 1fr;
+      gap:26px;
+      align-items:center;
+      padding:26px 0;
+      border-bottom:1px solid rgba(255,255,255,.18);
+    }
+    .next-item:last-child{border-bottom:0}
+    .next-date{
+      color:var(--orange);
+      font-size:40px;
+      font-weight:800;
+      letter-spacing:-.04em;
+    }
+    .next-title{
+      font-family:"Pretendard","Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+      font-size:24px;
+      line-height:1.35;
+      font-weight:700;
     }
 
-    .footer {
-      padding: 30px;
-      text-align: center;
-      font-size: 14px;
-      color: #777;
-      background: #eee;
+    /* more joy */
+    .more-joy{
+      padding:72px 0 40px;
+    }
+    .more-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:60px;
+      align-items:start;
+    }
+    .more-title{
+      margin:0;
+      color:var(--navy);
+      font-family:"Pretendard","Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+      font-size:clamp(58px,7vw,92px);
+      line-height:.84;
+      letter-spacing:-.045em;
+      font-weight:900;
+    }
+    .link-list{
+      border-top:1px solid var(--line);
+    }
+    .link-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:20px;
+      padding:18px 0;
+      border-bottom:1px solid var(--line);
+      font-weight:500;
+    }
+    .link-row span:last-child{
+      color:var(--navy);
+      font-size:22px;
+    }
+
+    footer{
+      width:min(calc(100% - 40px), var(--max));
+      margin:0 auto;
+      padding:22px 0 34px;
+      border-top:1px solid #9fa9ae;
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      color:#444;
+      font-size:11px;
+      letter-spacing:.06em;
+    }
+
+    @media (max-width:860px){
+      .nav{display:none}
+      .topbar-inner{min-height:64px}
+      .hero{padding-top:48px}
+      .hero-head{grid-template-columns:1fr}
+      .scroll-mark{display:none}
+      .hero-image{min-height:320px}
+      .main-grid,
+      .focus-head,
+      .more-grid{grid-template-columns:1fr}
+      .main-grid{gap:32px}
+      .updates{grid-template-columns:1fr}
+      .focus-head p{justify-self:start}
+      .focus-grid{grid-template-columns:1fr}
+      .focus-large{min-height:360px}
+      .focus-side{grid-template-columns:1fr 1fr;grid-template-rows:none}
+      .focus-small{min-height:180px}
+      .next-item{grid-template-columns:120px 1fr}
+      .next-date{font-size:32px}
+      .next-title{font-size:20px}
+    }
+
+    @media (max-width:560px){
+      .wrap{width:min(calc(100% - 28px), var(--max))}
+      .volume{font-size:9px}
+      .hero h1{font-size:48px}
+      .hero-sub{font-size:15px}
+      section{padding:40px 0 60px}
+      .section-label{margin-bottom:26px}
+      .story-image{min-height:260px}
+      .focus-side{grid-template-columns:1fr}
+      .next-item{grid-template-columns:1fr;gap:6px}
+      .next-date{font-size:28px}
+      footer{
+        width:min(calc(100% - 28px), var(--max));
+        flex-direction:column;
+      }
     }
   </style>
 </head>
-
 <body>
 
-<div class="wrap">
-
-  <div class="header">
-    <h1>JOY 공유대학 NEWS</h1>
-    <p>Vol.01 · 2026.10</p>
-  </div>
-
-  <div class="section">
-    <h2>JOY PICK</h2>
-
-    <div class="card">
-      <h3>JOY 공유대학 사업 본격 추진</h3>
-      <p>
-        제주지역 대학과 지역사회가 함께하는
-        JOY 공유대학의 주요 사업을 소개합니다.
-      </p>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="#top">JOY NEWSLETTER</a>
+      <nav class="nav">
+        <a href="#main-story">MAIN STORY</a>
+        <a href="#update">UPDATE</a>
+        <a href="#focus">IN FOCUS</a>
+        <a href="#next">NEXT JOY</a>
+      </nav>
+      <div class="volume">VOL.01 · 2026.10</div>
     </div>
-  </div>
+  </header>
 
-  <div class="section">
-    <h2>JOY ISSUE</h2>
+  <main id="top">
 
-    <div class="card">
-      <h3>ISSUE 01</h3>
-      <p>JOY 공유대학 사업설명회 개최</p>
-      <a class="button" href="#">
-        자세히 보기
-      </a>
-    </div>
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-head">
+          <div>
+            <h1>Connecting Jeju,<br>Creating New Possibilities</h1>
+            <p class="hero-sub">제주 JOY 공유대학의 새로운 소식을 전합니다.</p>
+          </div>
+          <div class="scroll-mark">SCROLL</div>
+        </div>
 
-    <div class="card">
-      <h3>ISSUE 02</h3>
-      <p>참여대학 공동 교육과정 개발 추진</p>
-    </div>
+        <div class="hero-image">
+          <!-- 실제 사진 사용 시 아래 한 줄의 주석을 해제하고 파일명을 맞춰주세요.
+          <img src="images/main.jpg" alt="JOY 공유대학 메인 비주얼">
+          -->
+          <span>[ 메인 비주얼 사진 ]</span>
+        </div>
+      </div>
+    </section>
 
-    <div class="card">
-      <h3>ISSUE 03</h3>
-      <p>지역기업 연계 R&D 과제 발굴</p>
-    </div>
-  </div>
+    <section id="main-story">
+      <div class="wrap">
+        <div class="section-label">01 / MAIN STORY</div>
 
-  <div class="section">
-    <h2>JOY CALENDAR</h2>
+        <div class="main-grid">
+          <div class="story-copy">
+            <h2>제주에서 시작되는<br>새로운 대학 간 연결</h2>
+            <p>
+              이번 호의 대표 소식 본문을 3~5줄 정도로 넣어주세요.
+              너무 길게 쓰기보다 핵심 내용과 의미가 한눈에 보이도록 정리하는 것이 좋습니다.
+            </p>
+            <a class="more-link" href="#" target="_blank" rel="noopener">
+              자세히 보기 <span>→</span>
+            </a>
+          </div>
 
-    <div class="card">
-      <p>10. 8. 한경국립대학교 업무협의</p>
-      <p>10. 14. 공동 교육과정 실무회의</p>
-      <p>10. 20. R&D 과제 발굴 회의</p>
-    </div>
-  </div>
+          <div class="story-image">
+            <!-- <img src="images/story.jpg" alt="대표 소식 사진"> -->
+            <span>[ 대표 소식 사진 ]</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <div class="section">
-    <h2>JOY SKETCH</h2>
+    <section id="update">
+      <div class="wrap">
+        <div class="section-label">02 / JOY UPDATE</div>
 
-    <div class="card">
-      <p>JOY 공유대학 주요 현장 소식을 소개합니다.</p>
-    </div>
-  </div>
+        <div class="updates">
+          <article class="update-card">
+            <div class="update-image">
+              <!-- <img src="images/update01.jpg" alt="공동 교육과정 개발"> -->
+              <span>[ 사진 ]</span>
+            </div>
+            <div class="update-num">01</div>
+            <h3>참여대학 공동 교육과정 개발 추진</h3>
+            <p>짧은 설명 2~3줄을 넣어주세요.</p>
+          </article>
 
-  <div class="footer">
-    제주 JOY 공유대학 사업단
-  </div>
+          <article class="update-card">
+            <div class="update-image">
+              <!-- <img src="images/update02.jpg" alt="연계협력 논의"> -->
+              <span>[ 사진 ]</span>
+            </div>
+            <div class="update-num">02</div>
+            <h3>수도권-비수도권 연계협력 논의</h3>
+            <p>짧은 설명 2~3줄을 넣어주세요.</p>
+          </article>
 
-</div>
+          <article class="update-card">
+            <div class="update-image">
+              <!-- <img src="images/update03.jpg" alt="R&D 과제 발굴"> -->
+              <span>[ 사진 ]</span>
+            </div>
+            <div class="update-num">03</div>
+            <h3>지역기업 연계 R&amp;D 과제 발굴</h3>
+            <p>짧은 설명 2~3줄을 넣어주세요.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="focus">
+      <div class="wrap">
+        <div class="section-label">03 / IN FOCUS</div>
+
+        <div class="focus-head">
+          <h2>JOY IN ACTION</h2>
+          <p>
+            회의·설명회·기업 방문 등 이번 호에서 보여주고 싶은 현장을 사진 중심으로 구성합니다.
+          </p>
+        </div>
+
+        <div class="focus-grid">
+          <div class="focus-large">
+            <!-- <img src="images/focus-main.jpg" alt="현장 사진"> -->
+            <span>[ 현장 사진 크게 ]</span>
+          </div>
+          <div class="focus-side">
+            <div class="focus-small">
+              <!-- <img src="images/focus01.jpg" alt="현장 사진 1"> -->
+              <span>[ 사진 ]</span>
+            </div>
+            <div class="focus-small">
+              <!-- <img src="images/focus02.jpg" alt="현장 사진 2"> -->
+              <span>[ 사진 ]</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="next" class="next-section">
+      <div class="wrap">
+        <div class="section-label">04 / NEXT JOY</div>
+
+        <div class="next-item">
+          <div class="next-date">10.08</div>
+          <div class="next-title">한경국립대학교 연계협력 업무협의</div>
+        </div>
+        <div class="next-item">
+          <div class="next-date">10.14</div>
+          <div class="next-title">공동 교육과정 실무회의</div>
+        </div>
+        <div class="next-item">
+          <div class="next-date">10.20</div>
+          <div class="next-title">R&amp;D 과제 발굴 협의</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="more-joy">
+      <div class="wrap more-grid">
+        <h2 class="more-title">MORE<br>JOY</h2>
+
+        <div class="link-list">
+          <a class="link-row" href="#" target="_blank" rel="noopener">
+            <span>홈페이지</span><span>→</span>
+          </a>
+          <a class="link-row" href="#" target="_blank" rel="noopener">
+            <span>인스타그램</span><span>→</span>
+          </a>
+          <a class="link-row" href="#" target="_blank" rel="noopener">
+            <span>관련 기사</span><span>→</span>
+          </a>
+          <a class="link-row" href="mailto:YOUR_EMAIL@jejunu.ac.kr">
+            <span>사업단 문의</span><span>→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <span>제주 JOY 공유대학 사업단</span>
+    <span>JOY NEWSLETTER · VOL.01 · 2026.10</span>
+  </footer>
 
 </body>
 </html>
