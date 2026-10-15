@@ -1,191 +1,366 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JOY NEWSLETTER Vol.01</title>
-<style>
-:root{--navy:#0b4b67;--orange:#f2a31b;--ink:#171717;--muted:#666;--line:#d7dde0;--soft:#f4f7f8;--max:820px}
-*{box-sizing:border-box} body{margin:0;background:#eef2f3;color:var(--ink);font-family:"Pretendard","Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;line-height:1.65;letter-spacing:-.015em}
-.page{width:min(calc(100% - 28px),var(--max));margin:24px auto;background:#fff;box-shadow:0 10px 28px rgba(0,0,0,.05)}
-.inner{padding:0 42px}.top{padding-top:26px}.topline{display:flex;justify-content:space-between;gap:20px;font-size:11px;font-weight:700;letter-spacing:.15em;color:var(--navy);padding-bottom:14px;border-bottom:1px solid var(--line)}
-.cover{padding:34px 0 30px}.cover-kicker{font-size:13px;font-weight:700;color:var(--orange);margin-bottom:10px}.cover h1{margin:0;color:var(--navy);font-size:clamp(38px,7vw,62px);line-height:1.08;font-weight:900;letter-spacing:-.045em}.cover-copy{margin:18px 0 22px;font-size:16px;color:#444}
-.hero{min-height:245px;background:#f4f8f9;border:1px solid #e6ecee;display:grid;place-items:center;color:#8a9499;font-size:13px;overflow:hidden}
-section{padding:34px 0 40px;border-top:1px solid var(--line)}.section-title{margin:0 0 22px;font-size:28px;font-weight:900;letter-spacing:-.035em;color:var(--navy)}.section-desc{margin:-10px 0 24px;color:var(--muted);font-size:14px}
-.task-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}.task{min-height:178px;padding:22px 18px 20px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:#fbfcfc}.task-num{color:var(--orange);font-size:24px;font-weight:900;margin-bottom:24px}.task h3{margin:0 0 10px;font-size:18px;font-weight:800}.task p{margin:0;color:#5f666a;font-size:13px}
-.task{background:#f6fafb}
-.main-news{display:grid;grid-template-columns:1.08fr .92fr;gap:30px;align-items:center;padding-bottom:26px;border-bottom:1px solid var(--line)}.main-news h3{margin:0 0 12px;font-size:26px;font-weight:900}.main-news p{margin:0;color:#555;font-size:14px}.news-image,.thumb{background:var(--soft);display:grid;place-items:center;color:#8a9499;border:1px solid #e5eaec}.news-image{min-height:210px}
-.sub-news-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:24px}.thumb{aspect-ratio:16/9;margin-bottom:14px}.sub-news h4{margin:0 0 8px;font-size:18px;font-weight:800}.sub-news p{margin:0;color:#666;font-size:13px}.pending{font-style:italic;color:#888}
-.footer{padding:30px 0 34px;border-top:1px solid var(--line)}.footer strong{display:block;margin-bottom:8px;color:var(--navy);font-size:16px}.footer p{margin:4px 0;color:#666;font-size:12px}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JOY NEWSLETTER Vol.01</title>
+  <style>
+    :root{
+      --navy:#0b4b67;
+      --orange:#f2a31b;
+      --ink:#171717;
+      --muted:#667178;
+      --line:#d8e0e4;
+      --soft:#f5f9fb;
+      --task:#f6fafb;
+      --max:820px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:#edf2f4;
+      color:var(--ink);
+      font-family:"Pretendard","Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+      line-height:1.65;
+      letter-spacing:-.015em;
+    }
+    img{display:block;max-width:100%}
+    .page{
+      width:min(calc(100% - 28px),var(--max));
+      margin:24px auto;
+      background:#fff;
+      box-shadow:0 10px 28px rgba(0,0,0,.05);
+    }
+    .inner{padding:0 42px}
+    .top{padding-top:26px}
+    .topline{
+      display:flex;justify-content:space-between;gap:20px;
+      padding-bottom:14px;border-bottom:1px solid var(--line);
+      color:var(--navy);font-size:11px;font-weight:800;letter-spacing:.14em;
+    }
 
+    section{padding:36px 0 42px;border-top:1px solid var(--line)}
+    .cover{padding-top:34px;border-top:0}
+    .cover-kicker{font-size:13px;font-weight:800;color:var(--orange);margin-bottom:10px}
+    .cover h1{
+      margin:0;color:var(--navy);
+      font-size:clamp(38px,7vw,60px);line-height:1.05;
+      font-weight:900;letter-spacing:-.045em;
+    }
+    .cover-copy{margin:17px 0 22px;color:#455158;font-size:16px;line-height:1.75}
+    .hero{
+      overflow:hidden;background:#f4f8f9;
+      border:1px solid #e6ecee;
+    }
+    .hero img{width:100%;height:auto}
 
-.vision-section{padding-top:38px;padding-bottom:46px}
-.vision-eyebrow{font-size:10px;font-weight:800;letter-spacing:.18em;color:var(--orange);margin-bottom:16px}
-.vision-hero{max-width:650px;margin-bottom:28px}
-.vision-kicker{margin:0 0 8px;color:#6d777c;font-size:13px}
-.vision-hero h2{margin:0;color:var(--navy);font-size:36px;line-height:1.2;font-weight:900;letter-spacing:-.045em}
-.vision-copy{margin:14px 0 0;color:#4f585d;font-size:15px;line-height:1.75}
-.vision-copy strong{color:var(--ink);font-weight:800}
+    .section-title{
+      margin:0 0 22px;color:var(--navy);
+      font-size:28px;font-weight:900;letter-spacing:-.035em;
+    }
+    .section-desc{margin:-10px 0 24px;color:var(--muted);font-size:14px}
 
-.vision-stats{display:flex;align-items:stretch;border:0;margin:26px 0 30px;padding:8px 0}
-.stat{flex:1;padding:16px 14px 18px;text-align:center;position:relative}
-.stat:not(:last-child)::after{display:none}
-.stat-circle{width:84px;height:84px;border-radius:50%;margin:0 auto;display:flex;align-items:center;justify-content:center;background:#f2f7fb;border:1px solid #d9e4ea;color:var(--navy);font-size:28px;line-height:1;font-weight:900;letter-spacing:-.04em}
-.stat span{display:block;margin-top:12px;color:#556169;font-size:15px;font-weight:700;line-height:1.45}
+    /* 비전 */
+    .vision-eyebrow{
+      margin-bottom:14px;color:var(--orange);
+      font-size:10px;font-weight:900;letter-spacing:.18em;
+    }
+    .vision-hero{max-width:650px;margin-bottom:22px}
+    .vision-kicker{margin:0 0 7px;color:#6d777c;font-size:13px}
+    .vision-hero h2{
+      margin:0;color:var(--navy);font-size:34px;
+      line-height:1.2;font-weight:900;letter-spacing:-.045em;
+    }
+    .vision-copy{margin:12px 0 0;color:#4f585d;font-size:15px;line-height:1.75}
+    .vision-copy strong{color:var(--ink);font-weight:900}
 
+    .vision-stats{
+      display:grid;grid-template-columns:repeat(4,1fr);
+      gap:18px;margin:28px 0 34px;
+    }
+    .stat{text-align:center}
+    .stat-circle{
+      width:86px;height:86px;margin:0 auto;
+      border-radius:50%;display:flex;align-items:center;justify-content:center;
+      background:#f2f7fb;border:1px solid #d8e4ea;
+      color:var(--navy);font-size:28px;font-weight:900;letter-spacing:-.04em;
+    }
+    .stat span{
+      display:block;margin-top:12px;color:#4f5b62;
+      font-size:15px;font-weight:800;line-height:1.45;
+    }
 
+    .industry-wrap{
+      display:grid;grid-template-columns:116px 1fr;
+      gap:22px;align-items:start;margin:0 0 28px;
+    }
+    .industry-heading{
+      color:var(--navy);font-size:14px;font-weight:900;padding-top:8px;
+    }
+    .industry-horizontal{
+      display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;
+    }
+    .industry-card{padding:2px 0 8px}
+    .industry-icon{
+      width:44px;height:44px;margin-bottom:10px;
+      border-radius:50%;display:flex;align-items:center;justify-content:center;
+      background:#f2f7fb;border:1px solid #dbe5ea;
+      font-size:19px;line-height:1;
+    }
+    .industry-name-row{
+      display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:7px;
+    }
+    .industry-name-row strong{font-size:16px;font-weight:900}
+    .industry-name-row em{
+      font-style:normal;color:var(--navy);background:#f2f7fb;
+      border:1px solid #dbe5ea;border-radius:999px;
+      padding:3px 7px;font-size:10px;font-weight:900;
+    }
+    .industry-card p{margin:0;color:#69747a;font-size:11px;line-height:1.5}
 
+    .effect-wrap{
+      display:grid;grid-template-columns:116px 1fr;
+      gap:22px;align-items:start;margin-top:18px;
+    }
+    .effect-heading{color:var(--navy);font-size:14px;font-weight:900;padding-top:8px}
+    .effect-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    .effect-item{
+      min-height:90px;display:flex;align-items:center;justify-content:center;
+      text-align:center;background:#f6fafb;border-radius:14px;padding:15px 10px;
+    }
+    .effect-item strong{color:#34454d;font-size:13px;line-height:1.55;font-weight:900}
 
+    /* 6개 추진과제 */
+    .task-grid{
+      display:grid;grid-template-columns:repeat(3,1fr);
+      border-top:1px solid var(--line);border-left:1px solid var(--line);
+    }
+    .task{
+      min-height:182px;padding:22px 18px 20px;background:var(--task);
+      border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+    }
+    .task-num{
+      margin-bottom:22px;color:var(--orange);
+      font-size:24px;font-weight:900;line-height:1;
+    }
+    .task h3{margin:0 0 10px;font-size:18px;line-height:1.35;font-weight:900}
+    .task p{margin:0;color:#5f686d;font-size:13px;line-height:1.65}
 
-.strategy-line i{font-style:normal;color:var(--orange);font-weight:900}
+    /* 주요 소식 */
+    .main-news{
+      display:grid;grid-template-columns:1.08fr .92fr;
+      gap:28px;align-items:center;padding-bottom:26px;
+      border-bottom:1px solid var(--line);
+    }
+    .main-news h3{margin:0 0 12px;font-size:25px;line-height:1.35;font-weight:900}
+    .main-news p{margin:0;color:#555f65;font-size:14px;line-height:1.75}
+    .news-image,.thumb{
+      position:relative;overflow:hidden;background:#f4f7f8;
+      border:1px solid #e5eaec;
+    }
+    .news-image{min-height:210px}
+    .thumb{aspect-ratio:16/9;margin-bottom:14px}
+    .news-image img,.thumb img{width:100%;height:100%;object-fit:cover}
+    .missing::after{
+      content:"사진 업로드 예정";
+      position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+      color:#8b969c;font-size:12px;
+    }
+    .sub-news-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:24px}
+    .sub-news h4{margin:0 0 8px;font-size:18px;line-height:1.45;font-weight:900}
+    .sub-news p{margin:0;color:#666;font-size:13px;line-height:1.65}
+    .pending{color:#879197;font-style:italic}
 
+    .footer{padding:30px 0 34px;border-top:1px solid var(--line)}
+    .footer strong{display:block;margin-bottom:8px;color:var(--navy);font-size:16px;font-weight:900}
+    .footer p{margin:4px 0;color:#666;font-size:12px}
 
-.industry-wrap{display:grid;grid-template-columns:110px 1fr;gap:22px;align-items:start;margin-bottom:26px}
-.industry-heading{color:var(--navy);font-size:14px;font-weight:800;padding-top:10px}
-.industry-horizontal{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
-.industry-card2{padding:6px 0 10px}
-.industry-icon{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#f2f7fb;border:1px solid #dbe5ea;font-size:18px;line-height:1;margin-bottom:10px}
-.industry-name-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:7px}
-.industry-name-row strong{font-size:16px;font-weight:900;color:var(--ink)}
-.industry-name-row em{font-style:normal;font-size:10px;font-weight:800;color:var(--navy);background:#f2f7fb;border:1px solid #dbe5ea;border-radius:999px;padding:3px 7px}
-.industry-card2 p{margin:0;color:#6d777c;font-size:11px;line-height:1.5}
-
-
-.effect-wrap{display:grid;grid-template-columns:110px 1fr;gap:22px;align-items:start;margin-top:28px}
-.effect-heading{color:var(--navy);font-size:14px;font-weight:800;padding-top:8px}
-.effect-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.effect-item{min-height:92px;display:flex;align-items:center;justify-content:center;text-align:center;background:#f6fafb;border-radius:14px;padding:16px 10px}
-.effect-item strong{font-size:13px;line-height:1.55;font-weight:800;color:#34454d}
-
-@media(max-width:720px){
-.effect-wrap{grid-template-columns:1fr;gap:10px}
-.effect-grid{grid-template-columns:1fr 1fr}
-.industry-wrap{grid-template-columns:1fr;gap:10px}
-.industry-horizontal{grid-template-columns:1fr 1fr}
-.vision-hero h2{font-size:30px}
-.vision-stats{display:grid;grid-template-columns:1fr 1fr}
-.stat:nth-child(2)::after{display:none}
-.stat:nth-child(-n+2){border-bottom:1px solid var(--line)}
-
-
-
-
-.strategy-line i{font-style:normal;color:var(--orange);font-weight:900}
-
-@media(max-width:720px){
-.vision-hero h2{font-size:30px}
-.vision-stats{display:grid;grid-template-columns:1fr 1fr}
-.stat:nth-child(2)::after{display:none}
-.stat:nth-child(-n+2){border-bottom:1px solid var(--line)}
-
-.inner{padding:0 24px}.task-grid{grid-template-columns:1fr 1fr}.main-news{grid-template-columns:1fr}.sub-news-grid{grid-template-columns:1fr}}
-@media(max-width:480px){
-.effect-grid{grid-template-columns:1fr}
-.industry-horizontal{grid-template-columns:1fr}.page{width:100%;margin:0;box-shadow:none}.inner{padding:0 18px}.task-grid{grid-template-columns:1fr}.industry-horizontal{grid-template-columns:1fr}.cover h1{font-size:38px}}
-</style>
+    @media(max-width:720px){
+      .inner{padding:0 24px}
+      .vision-stats{grid-template-columns:1fr 1fr}
+      .industry-wrap,.effect-wrap{grid-template-columns:1fr;gap:12px}
+      .industry-horizontal,.effect-grid{grid-template-columns:1fr 1fr}
+      .task-grid{grid-template-columns:1fr 1fr}
+      .main-news,.sub-news-grid{grid-template-columns:1fr}
+    }
+    @media(max-width:480px){
+      .page{width:100%;margin:0;box-shadow:none}
+      .inner{padding:0 18px}
+      .cover h1{font-size:38px}
+      .vision-hero h2{font-size:29px}
+      .industry-horizontal,.effect-grid,.task-grid{grid-template-columns:1fr}
+    }
+  </style>
 </head>
 <body>
-<main class="page"><div class="inner">
-<header class="top"><div class="topline"><span>JOY NEWSLETTER</span><span>VOL.01 · 2026.10</span></div></header>
+<main class="page">
+  <div class="inner">
 
-<section class="cover" style="border-top:0">
-<div class="cover-kicker">제주에서 먼저 만나는 미래</div>
-<h1>JOY NEWSLETTER</h1>
-<p class="cover-copy">제주 미래성장엔진 산업을 이끌 지역정주형 융합인재를 양성하고,<br>지역에서 배우고 일하는 선순환 구조를 만들어갑니다.</p>
-<div class="hero"><img src="main-visual.png" alt="JOY 공유대학 메인 비주얼" style="width:100%; height:100%; object-fit:cover;"></div>
-</section>
+    <header class="top">
+      <div class="topline">
+        <span>JOY NEWSLETTER</span>
+        <span>VOL.01 · 2026.10</span>
+      </div>
+    </header>
 
+    <section class="cover">
+      <div class="cover-kicker">제주에서 먼저 만나는 미래</div>
+      <h1>JOY NEWSLETTER</h1>
+      <p class="cover-copy">
+        제주 미래성장엔진 산업을 이끌 지역정주형 융합인재를 양성하고,<br>
+        지역에서 배우고 일하는 선순환 구조를 만들어갑니다.
+      </p>
+      <div class="hero">
+        <!-- 현재 GitHub 저장소 루트의 main-visual.png 사용 -->
+        <img src="main-visual.png" alt="JOY 공유대학 메인 비주얼">
+      </div>
+    </section>
 
+    <section>
+      <div class="vision-eyebrow">VISION &amp; GOAL</div>
+      <div class="vision-hero">
+        <p class="vision-kicker">JOY 공유대학이 그리는 미래</p>
+        <h2>제주에서 먼저 만나는 미래</h2>
+        <p class="vision-copy">
+          제주 미래성장엔진 산업을 선도할 <strong>지역정주형 융합인재</strong>를 양성합니다.
+        </p>
+      </div>
 
-<section class="vision-section">
-  <div class="vision-eyebrow">VISION &amp; GOAL</div>
+      <div class="vision-stats">
+        <div class="stat"><div class="stat-circle">8</div><span>마이크로디그리</span></div>
+        <div class="stat"><div class="stat-circle">28</div><span>공동교육과정</span></div>
+        <div class="stat"><div class="stat-circle">300</div><span>참여학생</span></div>
+        <div class="stat"><div class="stat-circle">70</div><span>JA-3C 인재</span></div>
+      </div>
 
-  <div class="vision-hero">
-    <p class="vision-kicker">JOY 공유대학이 그리는 미래</p>
-    <h2>제주에서 먼저 만나는 미래</h2>
-    <p class="vision-copy">
-      제주 미래성장엔진 산업을 선도할 <strong>지역정주형 융합인재</strong>를 양성합니다.
-    </p>
+      <div class="industry-wrap">
+        <div class="industry-heading">4대 전략산업</div>
+        <div class="industry-horizontal">
+          <div class="industry-card">
+            <div class="industry-icon">🧬</div>
+            <div class="industry-name-row"><strong>바이오</strong><em>공통</em></div>
+            <p>AI 바이오헬스 · 바이오</p>
+          </div>
+          <div class="industry-card">
+            <div class="industry-icon">⚡</div>
+            <div class="industry-name-row"><strong>에너지</strong><em>제주대</em></div>
+            <p>저전력반도체 · 청정에너지</p>
+          </div>
+          <div class="industry-card">
+            <div class="industry-icon">🧳</div>
+            <div class="industry-name-row"><strong>관광</strong><em>제주관광대</em></div>
+            <p>AI 관광 빅데이터 · 푸드테크</p>
+          </div>
+          <div class="industry-card">
+            <div class="industry-icon">🛰</div>
+            <div class="industry-name-row"><strong>우주</strong><em>제주한라대</em></div>
+            <p>드론 · 위성 · AI 우주데이터</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="effect-wrap">
+        <div class="effect-heading">기대효과</div>
+        <div class="effect-grid">
+          <div class="effect-item"><strong>지역 정주형<br>융합인재 양성</strong></div>
+          <div class="effect-item"><strong>제주 미래전략 산업<br>경쟁력 강화</strong></div>
+          <div class="effect-item"><strong>취·창업 활성화 및<br>일자리 창출</strong></div>
+          <div class="effect-item"><strong>지역혁신 생태계 구축 및<br>지속가능한 성장</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">JOY 공유대학 주요 추진과제</h2>
+      <p class="section-desc">JOY 공유대학은 교육·연구·자원공유와 지역 연계를 중심으로 6개 과제를 추진합니다.</p>
+
+      <div class="task-grid">
+        <article class="task">
+          <div class="task-num">01</div>
+          <h3>공동 교육과정</h3>
+          <p>산업수요를 반영한 공동 교육과정과 마이크로디그리를 개발·운영하고, 참여대학 간 교육자원을 연계합니다.</p>
+        </article>
+        <article class="task">
+          <div class="task-num">02</div>
+          <h3>공동연구</h3>
+          <p>지역 전략산업과 연계한 지산학연 공동연구를 추진하고, 후속 공동과제를 발굴합니다.</p>
+        </article>
+        <article class="task">
+          <div class="task-num">03</div>
+          <h3>자원공유</h3>
+          <p>JOY 공유대학 통합 LMS와 플랫폼을 기반으로 대학 간 교육·연구 자원과 인프라를 공동 활용합니다.</p>
+        </article>
+        <article class="task">
+          <div class="task-num">04</div>
+          <h3>창업거점 역할 수행</h3>
+          <p>국내외 대학·스타트업과의 교류, 인턴십, IR 데모데이 등을 통해 실전 창업과 기술사업화를 지원합니다.</p>
+        </article>
+        <article class="task">
+          <div class="task-num">05</div>
+          <h3>수도권-비수도권 연계</h3>
+          <p>수도권 대학·기업·연구기관과 연계해 심화교육, 실습·인턴십, 학생교류, 공동연구를 추진합니다.</p>
+        </article>
+        <article class="task">
+          <div class="task-num">06</div>
+          <h3>기초학문·교양 교육 공유</h3>
+          <p>참여대학의 기초·교양 교육자원을 공동 활용하고, 온라인 콘텐츠와 융합교양 프로그램을 함께 운영합니다.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">주요 소식</h2>
+
+      <article class="main-news">
+        <div>
+          <h3>JOY 공유대학 사업설명회 개최</h3>
+          <p>
+            JOY 공유대학은 사업의 주요 내용과 운영 방향을 공유하고,
+            참여대학·수요기업·유관기관의 의견을 수렴하기 위한 사업설명회를 개최했습니다.
+            이번 설명회를 통해 향후 사업 추진계획을 공유하고 본격적인 사업 추진의 기반을 마련했습니다.
+          </p>
+        </div>
+        <div class="news-image">
+          <img src="images/briefing-main.jpg"
+               alt="JOY 공유대학 사업설명회"
+               onerror="this.style.display='none';this.parentElement.classList.add('missing')">
+        </div>
+      </article>
+
+      <div class="sub-news-grid">
+        <article class="sub-news">
+          <div class="thumb">
+            <img src="images/partner-meeting-main.jpg"
+                 alt="참여대학 사업추진회의"
+                 onerror="this.style.display='none';this.parentElement.classList.add('missing')">
+          </div>
+          <h4>참여대학과 JOY 공유대학 추진방향 논의</h4>
+          <p>
+            제주대학교·제주한라대학교·제주관광대학교가 함께
+            사업 추진방향과 주요 사업계획을 공유하고,
+            참여대학 간 협력사항을 논의했습니다.
+          </p>
+        </article>
+
+        <article class="sub-news">
+          <div class="thumb">
+            <img src="images/hankyong-main.jpg"
+                 alt="한경국립대학교 연계협력 업무협의"
+                 onerror="this.style.display='none';this.parentElement.classList.add('missing')">
+          </div>
+          <h4>한경국립대학교 연계협력 업무협의</h4>
+          <p class="pending">회의 결과에 따라 주요 논의사항과 협력 내용을 반영합니다.</p>
+        </article>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <strong>JOY 공유대학 사업단</strong>
+      <p>제주대학교 · 제주한라대학교 · 제주관광대학교</p>
+      <p>홈페이지 · 문의처</p>
+    </footer>
+
   </div>
-
-  <div class="vision-stats">
-    <div class="stat"><div class="stat-circle">8</div><span>마이크로디그리</span></div>
-    <div class="stat"><div class="stat-circle">28</div><span>공동교육과정</span></div>
-    <div class="stat"><div class="stat-circle">300</div><span>참여학생</span></div>
-    <div class="stat"><div class="stat-circle">70</div><span>JA-3C 인재</span></div>
-  </div>
-
-  <div class="industry-wrap">
-    <div class="industry-heading">4대 전략산업</div>
-    <div class="industry-horizontal">
-      <div class="industry-card2">
-        <div class="industry-icon" aria-hidden="true">🧬</div>
-        <div class="industry-name-row"><strong>바이오</strong><em>공통</em></div>
-        <p>AI 바이오헬스 · 바이오</p>
-      </div>
-      <div class="industry-card2">
-        <div class="industry-icon" aria-hidden="true">⚡</div>
-        <div class="industry-name-row"><strong>에너지</strong><em>제주대</em></div>
-        <p>저전력반도체 · 청정에너지</p>
-      </div>
-      <div class="industry-card2">
-        <div class="industry-icon" aria-hidden="true">🧳</div>
-        <div class="industry-name-row"><strong>관광</strong><em>제주관광대</em></div>
-        <p>AI 관광 빅데이터 · 푸드테크</p>
-      </div>
-      <div class="industry-card2">
-        <div class="industry-icon" aria-hidden="true">🛰</div>
-        <div class="industry-name-row"><strong>우주</strong><em>제주한라대</em></div>
-        <p>드론 · 위성 · AI 우주데이터</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="effect-wrap">
-      <div class="effect-heading">기대효과</div>
-      <div class="effect-grid">
-        <div class="effect-item">
-          <strong>지역 정주형<br>융합인재 양성</strong>
-        </div>
-        <div class="effect-item">
-          <strong>제주 미래전략 산업<br>경쟁력 강화</strong>
-        </div>
-        <div class="effect-item">
-          <strong>취·창업 활성화 및<br>일자리 창출</strong>
-        </div>
-        <div class="effect-item">
-          <strong>지역혁신 생태계 구축 및<br>지속가능한 성장</strong>
-        </div>
-      </div>
-    </div>
-</section>
-
-
-<section>
-<h2 class="section-title">JOY 공유대학 주요 추진과제</h2>
-<p class="section-desc">JOY 공유대학은 교육·연구·자원공유와 지역 연계를 중심으로 6개 과제를 추진합니다.</p>
-<div class="task-grid">
-<article class="task"><div class="task-num">01</div><h3>공동 교육과정</h3><p>산업수요를 반영한 공동 교육과정과 마이크로디그리를 개발·운영하고, 참여대학 간 교육자원을 연계합니다.</p></article>
-<article class="task"><div class="task-num">02</div><h3>공동연구</h3><p>지역 전략산업과 연계한 지산학연 공동연구를 추진하고, 후속 공동과제를 발굴합니다.</p></article>
-<article class="task"><div class="task-num">03</div><h3>자원공유</h3><p>JOY 공유대학 통합 LMS와 플랫폼을 기반으로 대학 간 교육·연구 자원과 인프라를 공동 활용합니다.</p></article>
-<article class="task"><div class="task-num">04</div><h3>창업거점 역할 수행</h3><p>국내외 대학·스타트업과의 교류, 인턴십, IR 데모데이 등을 통해 실전 창업과 기술사업화를 지원합니다.</p></article>
-<article class="task"><div class="task-num">05</div><h3>수도권-비수도권 연계</h3><p>수도권 대학·기업·연구기관과 연계해 심화교육, 실습·인턴십, 학생교류, 공동연구를 추진합니다.</p></article>
-<article class="task"><div class="task-num">06</div><h3>기초학문·교양 교육 공유</h3><p>참여대학의 기초·교양 교육자원을 공동 활용하고, 온라인 콘텐츠와 융합교양 프로그램을 함께 운영합니다.</p></article>
-</div>
-</section>
-
-<section>
-<h2 class="section-title">주요 소식</h2>
-<article class="main-news">
-<div><h3>JOY 공유대학 사업설명회 개최</h3><p>JOY 공유대학은 사업의 주요 내용과 운영 방향을 공유하고, 참여대학·수요기업·유관기관의 의견을 수렴하기 위한 사업설명회를 개최했습니다. 이번 설명회를 통해 향후 사업 추진계획을 공유하고 본격적인 사업 추진의 기반을 마련했습니다.</p></div>
-<div class="news-image">[ 사업설명회 대표 사진 ]</div>
-</article>
-<div class="sub-news-grid">
-<article class="sub-news"><div class="thumb">[ 사업추진회의 사진 ]</div><h4>참여대학과 JOY 공유대학 추진방향 논의</h4><p>제주대학교·제주한라대학교·제주관광대학교가 함께 사업 추진방향과 주요 사업계획을 공유하고, 참여대학 간 협력사항을 논의했습니다.</p></article>
-<article class="sub-news"><div class="thumb">[ 한경국립대학교 업무협의 사진 ]</div><h4>한경국립대학교 연계협력 업무협의</h4><p class="pending">회의 종료 후 주요 논의사항과 협력 내용을 반영할 예정입니다.</p></article>
-</div>
-</section>
-
-<footer class="footer"><strong>JOY 공유대학 사업단</strong><p>제주대학교 · 제주한라대학교 · 제주관광대학교</p><p>홈페이지 · 문의처</p></footer>
-</div></main>
-</body></html>
+</main>
+</body>
+</html>
